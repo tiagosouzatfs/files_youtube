@@ -1,0 +1,46 @@
+
+# Teste comando docker
+sudo docker run hello-world
+
+# PÓS-INSTALAÇÃO
+sudo groupadd docker
+
+sudo usermod -aG docker $USER
+
+newgrp docker
+
+docker run hello-world
+
+sudo systemctl enable docker.service
+
+sudo systemctl enable containerd.service
+
+# ERROS CONHECIDOS
+
+WARNING: Error loading config file: /home/user/.docker/config.json -
+stat /home/user/.docker/config.json: permission denied
+
+This error indicates that the permission settings for the ~/.docker/ directory 
+are incorrect, due to having used the sudo command earlier.
+
+sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
+sudo chmod g+rwx "$HOME/.docker" -R
+
+# REFERÊNCIAS
+https://docs.docker.com/engine/install/version_so
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

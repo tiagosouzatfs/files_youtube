@@ -1,0 +1,34 @@
+# VERIFICAÇÃO DO REPOSITÓRIO
+O repositório CENTOS-EXTRAS precisa estar habilitado. (Já vem habilitado por padrão)
+sudo yum repolist
+
+# DESINSTALAÇÃO DE VERSÕES ANTIGAS
+sudo yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-engine
+
+# INSTALAÇÃO DOCKER
+sudo yum install -y yum-utils
+#yum-utils is a collection of tools and programs for managing yum repositories, 
+installing debug packages, source packages, extended information from repositories and administration.
+
+#adicionar repositório docker
+sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+#CHAVE PADRÃO / GPG key (Apenas para conferência)
+060a 61c5 1b55 8a7f 742b 77aa c52f eb6b 621e 9f35
+
+# Diferente das intalações debian e ubuntu
+sudo systemctl start docker
+
+sudo docker run hello-world
+
+# REFERÊNCIAS
+https://docs.docker.com/engine/install/centos/
